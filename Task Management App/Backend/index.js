@@ -9,18 +9,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
-  res.send("Hello MongoDB");
+  res.send("Hello Task Management App");
 });
 
 // define routes
-app.use("/api/v1", todosRoutes);
 
 connectDB()
   .then(() => {
     app.listen(process.env.PORT, () => {
-      console.log(`⚙️  Server is running at port: ${process.env.PORT}`);
+      console.log(`📡   Server is running at port: ${process.env.PORT}  ⚙️`);
     });
   })
   .catch((error) => {
-    console.log("Mongo DB connection failed !!! ", error);
+    console.log("❌ Mongo DB connection failed !!! ❌", error);
   });
