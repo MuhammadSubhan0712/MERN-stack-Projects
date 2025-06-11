@@ -38,61 +38,59 @@ exports.getAllTasks = async (req, res, next) => {
   }
 };
 
-
 exports.createTask = async (req, res, next) => {
-    try {
-        const newTask = await Task.create({
-            ...req.body,
-            createdBy: req.user.id
-        });
+  try {
+    const newTask = await Task.create({
+      ...req.body,
+      createdBy: req.user.id,
+    });
 
-        res.status(201).json({
-            status: 'success',
-            data: {
-                task: newTask
-            }
-        });
-
-    } catch (error) {
-        next(error);
-    }
-}
+    res.status(201).json({
+      status: "success",
+      data: {
+        task: newTask,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.updateTask = async (req, res, next) => {
-    try {
-        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true,
-        });
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
-        if (!task) {
-            return next(new AppError('No task found with that ID', 404));
-        }
-
-        res.status(200).json({
-            status: 'success',
-            data: {
-                task
-            }
-        });
-    } catch (error) {
-        next(error);
+    if (!task) {
+      return next(new AppError("No task found with that ID", 404));
     }
-}
 
-exports.deleteTask =  async (req, res, next) => {
-    try {
-        const task = await Task.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        task,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
-        if (!task) {
-            return next(new AppError('No task found with that ID', 404));
-        }
+exports.deleteTask = async (req, res, next) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
 
-        res.status(204).json({
-            status: 'success',
-            data: null
-        });
-    } catch (error) {
-        next(error);
+    if (!task) {
+      return next(new AppError("No task found with that ID", 404));
     }
-}
+
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
