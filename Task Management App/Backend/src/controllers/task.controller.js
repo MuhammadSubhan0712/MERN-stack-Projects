@@ -37,3 +37,23 @@ exports.getAllTasks = async (req, res, next) => {
     next(error);
   }
 };
+
+
+exports.createTask = async (req, res, next) => {
+    try {
+        const newTask = await Task.create({
+            ...req.body,
+            createdBy: req.user.id
+        });
+
+        res.status(201).json({
+            status: 'success',
+            data: {
+                task: newTask
+            }
+        });
+
+    } catch (error) {
+        next(error);
+    }
+}
