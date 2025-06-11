@@ -53,8 +53,14 @@ exports.login = async (req, res, next)  => {
         }
 
         // Condition to check if user exist and password is correct:
-        const user = await User.findOne({email}).select('+password');
+        const user = await newUser.findOne({email}).select('+password');
+
+        if (!user || !(await user.correctPassword(password, user.password))) {
+            return next(new AppError('Incorrect email or password', 401));
+        }
+
+        createSendToken(user, 200, res);
        } catch (error) {
-        
+         next(error);
        }
 }
