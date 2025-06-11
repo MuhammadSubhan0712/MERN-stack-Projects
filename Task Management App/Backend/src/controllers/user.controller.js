@@ -1,5 +1,7 @@
-import e from "cors";
 import jwt from "jsonwebtoken";
+import User from "../models/user.model";
+// import AppError from 
+
 
 const signToken = id  => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -84,7 +86,11 @@ exports.protect = async (req, res, next) => {
         }
 
         //Verification token:
-        
+        const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+
+        //Check if user still exist:
+        const currentUser = await User.findById(decoded.id);
+
   
     } catch (error) {
         
