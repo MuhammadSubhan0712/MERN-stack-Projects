@@ -1,3 +1,4 @@
+import e from "cors";
 import jwt from "jsonwebtoken";
 
 const signToken = id  => {
@@ -28,3 +29,32 @@ const createSendToken = (user, statusCode, res) => {
     });
 }
 
+exports.signup = async (req, res, next) => {
+    try {
+        const newUser = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            passwordConfir: req.body.passwordConfirm,
+        });
+        createSendToken(newUser, 201, res);
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.login = async (req, res, next)  => {
+       try {
+        const {email , password} = req.body;
+
+        // Condition to check if email and password exist:
+        if (!email || !password) {
+            return next(new AppError('Please provide email & password!', 400));
+        }
+
+        // Condition to check if user exist and password is correct:
+        const user = await User.findOne({email}).select('+password');
+       } catch (error) {
+        
+       }
+}
