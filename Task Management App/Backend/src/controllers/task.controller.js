@@ -57,3 +57,26 @@ exports.createTask = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.updateTask = async (req, res, next) => {
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+        });
+
+        if (!task) {
+            return next(new AppError('No task found with that ID', 404));
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                task
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
