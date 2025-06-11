@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 // import AppError from
 
 const signToken = (id) => {
