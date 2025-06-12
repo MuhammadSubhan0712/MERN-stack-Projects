@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 const AuthContext = createContext();
 
