@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
-// import AppError from
+import AppError from "../utils/appError.js";
+import catchAsync from "../utils/catchAsync.js";
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -31,7 +32,7 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-exports.signup = async (req, res, next) => {
+exports.signup = catchAsync (async (req, res, next) => {
   try {
     const newUser = await User.create({
       name: req.body.name,
@@ -43,9 +44,9 @@ exports.signup = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+});
 
-exports.login = async (req, res, next) => {
+exports.login =  catchAsync (async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -65,9 +66,9 @@ exports.login = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+});
 
-exports.protect = async (req, res, next) => {
+exports.protect = catchAsync (async (req, res, next) => {
   try {
     //Getting token and check if it's there:
     let token;
@@ -113,7 +114,8 @@ exports.protect = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+});
+
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.roles)) {
@@ -124,3 +126,11 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  });
+  res.status(200).json({ status: 'success' });
+}
