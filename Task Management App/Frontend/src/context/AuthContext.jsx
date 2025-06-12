@@ -42,6 +42,21 @@ const AuthProvider = ({ children }) => {
         variant: 'destructive'
       });
     }
+  });
+
+  const signupMutation = useMutation({
+    mutationFn: (userData) => api.post('/auth/signup', userData),
+    onSuccess: () => {
+      toast({ title: 'Account created successfully' });
+      navigate('/login');
+    },
+    onError: (error) => {
+      toast({
+        title: 'Signup failed',
+        description: error.response?.data?.message || 'Something went wrong',
+        variant: 'destructive'
+      });
+    }
   })
   
   return (
