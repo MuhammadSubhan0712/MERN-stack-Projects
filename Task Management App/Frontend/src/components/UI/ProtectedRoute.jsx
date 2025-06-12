@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import { useAuth } from "../../context/AuthContext";
+import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  return (
-    <div>ProtectedRoute</div>
-  )
-}
+  const { user } = useAuth();
 
-export default ProtectedRoute
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <Outlet />;
+};
+
+export default ProtectedRoute;
