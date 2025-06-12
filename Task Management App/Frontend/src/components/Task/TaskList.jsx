@@ -8,7 +8,15 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { Table } from "@/components/ui/table";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 
 const statusVariant = {
   todo: "secondary",
@@ -67,7 +75,38 @@ const TaskList = () => {
 
             <TableBody>
               {tasks.map((task) => (
-                <TableRow key={task._id}></TableRow>
+                <TableRow key={task._id}>
+                  <TableCell className="font-medium">{task.title}</TableCell>
+
+                  <TableCell>
+                    <Badge variant={statusVariant[task.status]}>
+                      {task.status}
+                    </Badge>
+                  </TableCell>
+
+                  <TableCell>
+                    <Badge variant={priorityVariant[task.priority]}>
+                      {task.priority}
+                    </Badge>
+                  </TableCell>
+
+                  <TableCell>
+                    {task.dueDate
+                      ? new Date(task.dueDate).toLocaleDateString()
+                      : "-"}
+                  </TableCell>
+
+                  <TableCell>
+                    {task.assignedTo?.map((user) => user.name).join(", ") ||
+                      "-"}
+                  </TableCell>
+
+                  <TableCell>
+                    <Button variant="ghost" size="sm">
+                      Edit
+                    </Button>
+                  </TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
