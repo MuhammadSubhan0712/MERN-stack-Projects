@@ -1,9 +1,10 @@
 import express from "express";
 import taskController from "../controllers/task.controller.js";
-
+import authController from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
+router.use(authController.protect);
 
 router
 .route("/")
