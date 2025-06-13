@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const queryClient = useQueryClient();

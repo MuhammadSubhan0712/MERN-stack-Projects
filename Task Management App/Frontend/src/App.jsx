@@ -2,7 +2,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/UI/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
 import Login from './pages/Login';
