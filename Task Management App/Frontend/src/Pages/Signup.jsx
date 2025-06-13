@@ -1,9 +1,28 @@
-import React from 'react'
+import React from "react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import SignupForm from "../components/Auth/SignupForm";
 
 const Signup = () => {
   return (
-    <div>Signup</div>
-  )
-}
+    <>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-center">Create your account</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <SignupForm />
+            <div className="mt-4 text-center text-sm">
+              Already have an account?
+              <Link
+                to="/login"
+                className="font-medium text-primary hover:underline"></Link>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
+  );
+};
 
-export default Signup
+export default Signup;
