@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "../../context/AuthContext";
 
-
 const formSchema = z
   .object({
     name: z.string().min(2, "Name must be at least 2 characters"),
