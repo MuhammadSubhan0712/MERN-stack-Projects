@@ -4,25 +4,33 @@ import express from "express";
 import connectDB from "./src/db/index.js";
 import taskRoute from "./src/routes/task.route.js";
 
-
-import cors from "cors"
+import cors from "cors";
 const app = express();
 
 app.use(express.json());
 
-app.use(cors({
-  origin: true,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hello Task Management App");
 });
 
-// define routes : 
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+});
+
+// define routes :
 
 app.use("api/v1", taskRoute);
-
 
 connectDB()
   .then(() => {
