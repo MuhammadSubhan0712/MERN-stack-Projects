@@ -38,6 +38,18 @@ exports.getAllTasks = async (req, res, next) => {
   }
 };
 
+exports.getTask = async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id).populate('assignedTo createdBy');
+
+    if (!task) {
+      return next(new AppError('No task found with that ID', 404));
+    }
+  } catch (error) {
+    
+  }
+}
+
 exports.createTask = async (req, res, next) => {
   try {
     const newTask = await Task.create({
