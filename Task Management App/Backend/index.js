@@ -17,7 +17,8 @@ app.get("/", (req, res) => {
   res.send("Hello Task Management App");
 });
 
-// define routes
+// define routes : 
+
 
 connectDB()
   .then(() => {
