@@ -43,7 +43,7 @@ exports.createTask = async (req, res, next) => {
     const newTask = await Task.create({
       ...req.body,
       createdBy: req.user.id,
-    });
+    }); 
 
     res.status(201).json({
       status: "success",
