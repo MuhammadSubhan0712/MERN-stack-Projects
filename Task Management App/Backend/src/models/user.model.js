@@ -16,13 +16,13 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       validate: [validator.isEmail, "Please provide valid email"],
     },
-    passowrd: {
+    password: {
       type: String,
       required: [true, "Please provide a password"],
       minlength: 8,
       select: false,
     },
-    passsowrdConfirm: {
+    passwordConfirm: {
       type: String,
       required: [true, "Please confirm your password"],
       validate: {
@@ -51,8 +51,8 @@ const userSchema = new mongoose.Schema(
 //Password hashing middleware:
 userSchema.pre("save", async function (next) {
   if (!this.isModified("passowrd")) return next();
-  this.passowrd = await bcrypt.hash(this.passowrd, 12);
-  this.passsowrdConfirm = undefined;
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordConfirm = undefined;
   next();
 });
 

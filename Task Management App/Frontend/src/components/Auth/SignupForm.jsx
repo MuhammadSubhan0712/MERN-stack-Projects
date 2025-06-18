@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "../../context/AuthContext";
 
+
 const formSchema = z
   .object({
     name: z.string().min(2, "Name must be at least 2 characters"),
@@ -100,7 +101,7 @@ const SignupForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={isSigningUp}>
+        <Button type="submit" className="w-full text-gray-800" disabled={isSigningUp}>
           {isSigningUp ? "Creating account..." : "Create Account"}
         </Button>
       </form>

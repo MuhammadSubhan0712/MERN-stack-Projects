@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import SignupForm from "../components/Auth/SignupForm";
+import Login from "./Login";
 
 const Signup = () => {
   return (
@@ -14,10 +15,12 @@ const Signup = () => {
           <CardContent>
             <SignupForm />
             <div className="mt-4 text-center text-sm">
-              Already have an account?
               <Link
                 to="/login"
-                className="font-medium text-primary hover:underline"></Link>
+                className="font-medium text-primary hover:underline">
+                Already have an account?
+                <Login />
+                </Link>
             </div>
           </CardContent>
         </Card>

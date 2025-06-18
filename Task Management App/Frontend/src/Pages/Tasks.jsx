@@ -1,10 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/UI/button";
 import TaskList from "../components/Task/TaskList";
 import TaskForm from "../components/Task/TaskForm";
 import api from "../api";
 import { useState } from "react";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 const Tasks = () => {
   const [isCreating, setIsCreating] = useState(false);

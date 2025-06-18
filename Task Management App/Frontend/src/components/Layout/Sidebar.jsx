@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { name: "Dashboard", path: "/dashobard", icon: Home },
+  { name: "Dashboard", path: "/", icon: Home },
   { name: "Task", path: "/task", icon: List },
   { name: "Profile", path: "/profile", icon: User },
   { name: "Settings", path: "/settings", icon: Settings },
@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="hidden md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-64 border-r dark:border-gray-700 bg-white dark bg-gray-800">
+        <div className="flex flex-col w-64 border-r dark:border-gray-700 bg-white dark:bg-gray-800">
           <div className="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
               <span className="text-xl font-bold text-gray-900 dark:text-white">

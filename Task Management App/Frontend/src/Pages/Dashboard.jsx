@@ -6,9 +6,9 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-} from "@/components/ui/cards";
-import { TaskList } from "../components/Task/TaskList";
-import { Button } from '@/components/ui/button';
+} from "../components/UI/card";
+// import { TaskList } from "../components/Task/TaskList"
+import { Button } from '../components/UI/button';
 import { Link } from 'react-router-dom';
 
 
@@ -80,7 +80,7 @@ const Dashboard = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <TaskList tasks={recentTasks} showActions={false} />
+            {/* <TaskList tasks={recentTasks} showActions={false} /> */}
           </CardContent>
         </Card>
       </div>

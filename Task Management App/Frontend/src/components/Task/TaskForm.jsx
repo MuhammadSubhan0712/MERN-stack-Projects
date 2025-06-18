@@ -1,7 +1,8 @@
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Button } from '@/components/ui/button';
+import { Button } from '../UI/button';
 import {
   Form,
   FormControl,
@@ -9,19 +10,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from '../UI/form';
+import { Input } from '../UI/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
+} from '../UI/select';
+import { Textarea } from '../UI/textarea';
 import api from '../../api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
+
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required'),

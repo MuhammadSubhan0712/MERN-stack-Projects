@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import LoginForm from "../components/Auth/LoginForm";
+import Signup from "./Signup";
 
 const Login = () => {
   return (
@@ -18,7 +19,7 @@ const Login = () => {
               <Link
                 to="/signup"
                 className="font-medium text-primary hover:underline">
-                <Signup></Signup>
+                <Signup />
               </Link>
             </div>
           </CardContent>
