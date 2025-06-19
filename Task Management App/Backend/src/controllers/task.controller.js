@@ -2,7 +2,7 @@ import Task from "../models/task.model.js";
 import AppError from "../utils/appError.js";
 import APIFeatures from "../utils/apiFeatures.js";
 
-exports.getAllTasks = async (req, res, next) => {
+export const getAllTasks = async (req, res, next) => {
   try {
     //Filtering:
     const filter = {};
@@ -38,7 +38,7 @@ exports.getAllTasks = async (req, res, next) => {
   }
 };
 
-exports.getTask = async (req, res, next) => {
+export const getTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id).populate(
       "assignedTo createdBy"
@@ -59,7 +59,7 @@ exports.getTask = async (req, res, next) => {
   }
 };
 
-exports.createTask = async (req, res, next) => {
+export const createTask = async (req, res, next) => {
   try {
     const newTask = await Task.create({
       ...req.body,
@@ -77,7 +77,7 @@ exports.createTask = async (req, res, next) => {
   }
 };
 
-exports.updateTask = async (req, res, next) => {
+export const updateTask = async (req, res, next) => {
   try {
     const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -99,7 +99,7 @@ exports.updateTask = async (req, res, next) => {
   }
 };
 
-exports.deleteTask = async (req, res, next) => {
+export const deleteTask = async (req, res, next) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
 
@@ -115,3 +115,4 @@ exports.deleteTask = async (req, res, next) => {
     next(error);
   }
 };
+

@@ -32,7 +32,7 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-exports.signup = catchAsync (async (req, res, next) => {
+export const signup = catchAsync(async (req, res, next) => {
   try {
     const newUser = await User.create({
       name: req.body.name,
@@ -46,7 +46,7 @@ exports.signup = catchAsync (async (req, res, next) => {
   }
 });
 
-exports.login =  catchAsync (async (req, res, next) => {
+export const login = catchAsync(async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -68,7 +68,7 @@ exports.login =  catchAsync (async (req, res, next) => {
   }
 });
 
-exports.protect = catchAsync (async (req, res, next) => {
+export const protect = catchAsync(async (req, res, next) => {
   try {
     //Getting token and check if it's there:
     let token;
@@ -116,7 +116,7 @@ exports.protect = catchAsync (async (req, res, next) => {
   }
 });
 
-exports.restrictTo = (...roles) => {
+export const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.roles)) {
       return next(
@@ -127,10 +127,10 @@ exports.restrictTo = (...roles) => {
   };
 };
 
-exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
+export const logout = (req, res) => {
+  res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
+    httpOnly: true,
   });
-  res.status(200).json({ status: 'success' });
-}
+  res.status(200).json({ status: "success" });
+};

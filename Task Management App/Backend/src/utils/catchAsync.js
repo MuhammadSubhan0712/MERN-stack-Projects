@@ -1,5 +1,7 @@
-module.exports = fn => {
+const fn = () => {
     return (req, res, next) => {
         fn(req, res, next).catch(next);
     }
 }
+
+export default fn;
