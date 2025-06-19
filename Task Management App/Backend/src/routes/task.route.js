@@ -6,15 +6,12 @@ const router = express.Router();
 
 router.use(authController.protect);
 
+router.route("/").get(taskController.getAllTasks);
+
 router
-.route("/")
-.get(taskController.getAllTasks)
- 
+  .route("/:id")
+  .get(taskController.getTask)
+  .patch(taskController.updateTask)
+  .delete(taskController.deleteTask);
 
-router 
-.route("/:id")
-.get(taskController.getTask)
-.patch(taskController.updateTask)
-.delete(taskController.deleteTask);
-
-module.exports = router ;
+export default router;
