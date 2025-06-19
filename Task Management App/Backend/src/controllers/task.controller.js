@@ -2,6 +2,26 @@ import Task from "../models/task.model.js";
 import AppError from "../utils/appError.js";
 import APIFeatures from "../utils/apiFeatures.js";
 
+
+export const createTask = async (req, res, next) => {
+  try {
+    const newTask = await Task.create({
+      ...req.body,
+      createdBy: req.user.id,
+    });
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        task: newTask,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const getAllTasks = async (req, res, next) => {
   try {
     //Filtering:
@@ -59,23 +79,6 @@ export const getTask = async (req, res, next) => {
   }
 };
 
-export const createTask = async (req, res, next) => {
-  try {
-    const newTask = await Task.create({
-      ...req.body,
-      createdBy: req.user.id,
-    });
-
-    res.status(201).json({
-      status: "success",
-      data: {
-        task: newTask,
-      },
-    });
-  } catch (error) {
-    next(error);
-  }
-};
 
 export const updateTask = async (req, res, next) => {
   try {
