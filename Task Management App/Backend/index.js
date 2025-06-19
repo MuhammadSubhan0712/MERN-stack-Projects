@@ -31,8 +31,8 @@ app.use((err, req, res, next) => {
 
 // define routes :
 
-app.use("/api/v1", authRoute);
-app.use("/api/v1/auth", taskRoute);
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1", taskRoute);
 
 
 connectDB()

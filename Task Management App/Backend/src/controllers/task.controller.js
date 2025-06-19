@@ -1,6 +1,6 @@
 import Task from "../models/task.model.js";
-import AppError from "../utils/appError";
-import APIFeatures from "../utils/apiFeatures";
+import AppError from "../utils/appError.js";
+import APIFeatures from "../utils/apiFeatures.js";
 
 exports.getAllTasks = async (req, res, next) => {
   try {
