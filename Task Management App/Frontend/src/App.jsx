@@ -7,7 +7,6 @@ import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Navbar from "./components/Layout/Header";
 import { Toaster } from "sonner";
 
 const queryClient = new QueryClient();
@@ -15,11 +14,8 @@ const queryClient = new QueryClient();
 const App = () => {
   return (
     <>
-       {/* <Navbar /> */}
-          <Tasks />
-      {/* <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-     
           <AuthProvider>
             <Routes>
               <Route path="/login" element={<Login />} />
@@ -33,7 +29,7 @@ const App = () => {
             <Toaster />
           </AuthProvider>
         </BrowserRouter>
-      </QueryClientProvider> */}
+      </QueryClientProvider>
     </>
   );
 };
