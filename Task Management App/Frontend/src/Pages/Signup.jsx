@@ -19,7 +19,6 @@ const Signup = () => {
                 to="/login"
                 className="font-medium text-primary hover:underline">
                 Already have an account?
-                <Login />
                 </Link>
             </div>
           </CardContent>

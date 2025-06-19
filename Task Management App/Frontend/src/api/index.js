@@ -21,9 +21,10 @@ api.interceptors.request.use(
 
 // Response interceptor:
 api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
+  response => response,
+  error => {
+    if (error.message === 'Network Error') {
+      alert('Backend server is not running');
       localStorage.removeItem("token"); 
       window.location.href = "/login";
     }
