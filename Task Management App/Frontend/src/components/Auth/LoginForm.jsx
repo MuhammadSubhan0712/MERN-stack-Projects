@@ -64,7 +64,7 @@ const LoginForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={isLoggingIn}>
+        <Button type="submit" className="w-full text-black" disabled={isLoggingIn}>
           {isLoggingIn ? "Logging in..." : "Login"}
         </Button>
       </form>
