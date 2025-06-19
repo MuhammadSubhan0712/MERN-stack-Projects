@@ -9,7 +9,7 @@ router.use(authController.protect);
 router
 .route("/")
 .get(taskController.getAllTasks)
-.post(taskController.createTask);
+ 
 
 router 
 .route("/:id")

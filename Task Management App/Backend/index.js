@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import connectDB from "./src/db/index.js";
+import authRoute from "./src/"
 import taskRoute from "./src/routes/task.route.js";
 
 import cors from "cors";
