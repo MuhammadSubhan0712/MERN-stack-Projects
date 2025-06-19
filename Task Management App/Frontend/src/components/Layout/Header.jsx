@@ -1,7 +1,7 @@
 import React from "react";
-import useAuth from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import Button from "@/components/ui/button";
+import Button from "../UI/button";
 
 const Header = () => {
   const { user, logout } = useAuth();

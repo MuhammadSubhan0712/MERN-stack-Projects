@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 const App = () => {
   return (
     <>
-       <Navbar />
+       {/* <Navbar /> */}
           <Tasks />
       {/* <QueryClientProvider client={queryClient}>
         <BrowserRouter>
