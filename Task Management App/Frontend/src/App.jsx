@@ -2,11 +2,11 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from './components/UI/ProtectedRoute';
-import Dashboard from './pages/Dashboard';
-import Tasks from './pages/Tasks';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import ProtectedRoute from "./components/UI/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import Tasks from "./pages/Tasks";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import { Toaster } from "sonner";
 
 const queryClient = new QueryClient();
@@ -22,11 +22,12 @@ const App = () => {
               <Route path="/signup" element={<Signup />} />
 
               <Route element={<ProtectedRoute />}>
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route index element={<Dashboard />} />
                 <Route path="/tasks" element={<Tasks />} />
               </Route>
             </Routes>
-            <Toaster />
+
+            <Toaster richColors />
           </AuthProvider>
         </BrowserRouter>
       </QueryClientProvider>
