@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import connectDB from "./src/db/index.js";
-import authRoute from "./src/"
+import authRoute from "./src/routes/auth.route.js";
 import taskRoute from "./src/routes/task.route.js";
 
 import cors from "cors";
@@ -31,7 +31,9 @@ app.use((err, req, res, next) => {
 
 // define routes :
 
-app.use("api/v1", taskRoute);
+app.use("/api/v1", authRoute);
+app.use("/api/v1/auth", taskRoute);
+
 
 connectDB()
   .then(() => {
