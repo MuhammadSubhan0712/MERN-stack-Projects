@@ -1,17 +1,17 @@
 import express from "express";
-import taskController from "../controllers/task.controller.js";
-import authController from "../controllers/auth.controller.js";
+import { getAllTasks, getTask, updateTask, deleteTask } from "../controllers/task.controller.js";
+import { protect } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.use(authController.protect);
+router.use(protect);
 
-router.route("/").get(taskController.getAllTasks);
+router.route("/").get(getAllTasks);
 
 router
   .route("/:id")
-  .get(taskController.getTask)
-  .patch(taskController.updateTask)
-  .delete(taskController.deleteTask);
+  .get(getTask)
+  .patch(updateTask)
+  .delete(deleteTask);
 
 export default router;
