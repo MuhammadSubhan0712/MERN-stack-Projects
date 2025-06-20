@@ -2,9 +2,7 @@ import React from 'react'
 
 const ChatContainer = () => {
   return (
-    <>
-    gfdgfdgfdgfg
-    </>
+    <div>ChatContainer</div>
   )
 }
 
