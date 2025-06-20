@@ -15,11 +15,10 @@ const Login = () => {
           <CardContent>
             <LoginForm />
             <div className="mt-4 text-center text-sm">
-              Don't have an account?
               <Link
                 to="/signup"
                 className="font-medium text-primary hover:underline">
-                Sign up
+             Don't have an account? 
               </Link>
             </div>
           </CardContent>

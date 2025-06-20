@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const { data } = await api.get("/users/me");
+        const { data } = await api.get("/auth/me");
         setUser(data.data);
       } catch (error) {
         setUser(null);
@@ -41,6 +41,14 @@ export const AuthProvider = ({ children }) => {
       });
     },
   });
+
+  onSuccess: (data) => {
+    setUser(data.data.user);
+    localStorage.setItem('token', data.data.token);
+    queryClient.invalidateQueries();
+    navigate("/");
+    toast.success("Login successful");
+  }
 
   const signupMutation = useMutation({
     mutationFn: (userData) => api.post("/auth/signup", userData),

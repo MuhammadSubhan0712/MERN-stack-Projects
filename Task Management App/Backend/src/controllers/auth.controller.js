@@ -3,7 +3,6 @@ import User from "../models/user.model.js";
 import AppError from "../utils/appError.js";
 import catchAsync from "../utils/catchAsync.js";
 
-
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -33,13 +32,20 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-export const signup = catchAsync(async (req, res, next) => {
+export const getMe = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  res.status(200).json({
+    status: "success",
+    data: { user },
+  });
+});
 
+export const signup = catchAsync(async (req, res, next) => {
   const existingUser = await User.findOne({ email: req.body.email });
   if (existingUser) {
-    return next(new AppError('Email is already in use', 400));
+    return next(new AppError("Email is already in use", 400));
   }
-  
+
   try {
     const newUser = await User.create({
       name: req.body.name,
