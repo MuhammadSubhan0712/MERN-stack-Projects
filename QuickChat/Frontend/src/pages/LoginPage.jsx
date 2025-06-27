@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import assets from "../assets/assets";
+
 const LoginPage = () => {
   const [currentState, setCurrentState] = useState("Sign up");
   const [fullName, setFullName] = useState("");
@@ -14,11 +15,7 @@ const LoginPage = () => {
         className="min-h-screen bg-cover bg-center flex items-center 
     justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl">
         {/* Left side */}
-        <img
-          src={assets.logo_big}
-          alt="logo"
-          className="w-[min-(30vw, 250px)]"
-        />
+        <img src={assets.logo_big} alt="logo" className="w-80" />
 
         {/* Right side */}
         <form
@@ -76,9 +73,16 @@ const LoginPage = () => {
               placeholder="provide a short bio..."></textarea>
           )}
 
-          <button className="py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer">
+          <button
+            type="submit"
+            className="py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer">
             {currentState === "Sign up" ? "Create Account" : "Login now"}
           </button>
+
+          <div>
+            <input type="checkbox" />
+            <p>Agree to the terms of use & privacy policy. </p>
+          </div>
         </form>
       </div>
     </>
