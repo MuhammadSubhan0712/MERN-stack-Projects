@@ -15,7 +15,7 @@ const LoginPage = () => {
         className="min-h-screen bg-cover bg-center flex items-center 
     justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl">
         {/* Left side */}
-        <img src={assets.logo_big} alt="logo" className="w-80" />
+        <img src={assets.logo_big} alt="logo" className="w-min-[250px]" />
 
         {/* Right side */}
         <form
@@ -79,7 +79,7 @@ const LoginPage = () => {
             {currentState === "Sign up" ? "Create Account" : "Login now"}
           </button>
 
-          <div>
+          <div className="flex items-center gap-2 text-sm text-gray-500">
             <input type="checkbox" />
             <p>Agree to the terms of use & privacy policy. </p>
           </div>
