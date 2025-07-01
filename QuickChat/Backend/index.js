@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
+import { connectDB } from "./src/db/index.js";
+
 
 dotenv.config();
 // Create express app and http server:
@@ -13,6 +15,9 @@ app.use(express.json({ limit: "4mb" }));
 app.use(cors());
 
 app.use("/api/status", (req, res) => res.send("Server is live"));
+
+// Connect to MONGODB:
+await connectDB();
 
 const PORT = process.env.PORT;
 server.listen(PORT, () => console.log("📡 Server is running on port: 🔗", PORT , "✅"));
