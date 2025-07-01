@@ -8,6 +8,14 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
   const [isDataSubmitted, setIsDataSubmitted] = useState(false);
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    if (currentState === "Sign up" && !isDataSubmitted) {
+      setIsDataSubmitted(true);
+      return;
+    }
+  };
 
   return (
     <>
@@ -19,15 +27,19 @@ const LoginPage = () => {
 
         {/* Right side */}
         <form
+          onSubmit={onSubmitHandler}
           className="border-2 bg-white/8 text-white border-gray-500 p-6 flex 
         flex-col gap-6 rounded-lg shadow-lg">
           <h2 className="font-medium text-2xl flex justify-between items-center">
             {currentState}
-            <img
-              src={assets.arrow_icon}
-              alt=""
-              className="w-5 cursor-pointer"
-            />
+            {isDataSubmitted && (
+              <img
+                onClick={() => setIsDataSubmitted(false)}
+                src={assets.arrow_icon}
+                alt=""
+                className="w-5 cursor-pointer"
+              />
+            )}
           </h2>
 
           {currentState === "Sign up" && !isDataSubmitted && (
