@@ -15,7 +15,7 @@ const LoginPage = () => {
         className="min-h-screen bg-cover bg-center flex items-center 
     justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl">
         {/* Left side */}
-        <img src={assets.logo_big} alt="logo" className="w-min-[250px]" />
+        <img src={assets.logo_big} alt="logo" className="w-50" />
 
         {/* Right side */}
         <form
@@ -88,14 +88,23 @@ const LoginPage = () => {
             {currentState === "Sign up" ? (
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
-                <span className="font-medium text-violet-500 cursor-pointer">
+                <span
+                  onClick={() => {
+                    setCurrentState("Login");
+                    setIsDataSubmitted(false);
+                  }}
+                  className="font-medium text-violet-500 cursor-pointer">
                   Login here
                 </span>
               </p>
             ) : (
               <p className="text-sm text-gray-600">
                 Create an account{" "}
-                <span className="font-medium text-violet-500 cursor-pointer">
+                <span
+                  onClick={() => {
+                    setCurrentState("Sign up");
+                  }}
+                  className="font-medium text-violet-500 cursor-pointer">
                   Click here
                 </span>
               </p>
