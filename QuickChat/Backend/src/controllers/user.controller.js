@@ -1,5 +1,6 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import generateToken from "../lib/utils.js";
 
 // Signup new user:
 export const signup = async () => {
@@ -30,6 +31,19 @@ export const signup = async () => {
       bio,
     });
 
-    const token = 
-  } catch (error) {}
+    const token = generateToken(newUser._id);
+
+    res.json({
+      success: true,
+      userData: newUser,
+      token,
+      message: "Account created successfully",
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "Error created account",
+      error,
+    });
+  }
 };
