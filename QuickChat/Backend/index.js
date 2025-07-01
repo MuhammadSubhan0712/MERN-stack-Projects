@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
 
+dotenv.config();
 // Create express app and http server:
 const app = express();
 const server = http.createServer(app);
@@ -14,4 +15,4 @@ app.use(cors());
 app.use("/api/status", (req, res) => res.send("Server is live"));
 
 const PORT = process.env.PORT;
-server.listen(PORT, () => console.log("Server is running on port:", PORT));
+server.listen(PORT, () => console.log("📡 Server is running on port: 🔗", PORT , "✅"));
