@@ -5,7 +5,8 @@ import RightSidebar from "../components/RightSidebar";
 
 const HomePage = () => {
 
-  const [selectedUser, setSelectedUser] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   return (
     <>
