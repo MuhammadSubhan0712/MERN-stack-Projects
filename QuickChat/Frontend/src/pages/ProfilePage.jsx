@@ -8,8 +8,8 @@ const ProfilePage = () => {
   const [selectedImg, setSelectedImg] = useState(null);
   const navigate = useNavigate();
 
-  const [name, setName] = useState("Martin Johnson");
-  const [bio, setBio] = useState("Hi Everyone, I am Using QuickChat");
+  const [name, setName] = useState(authUser.fullName);
+  const [bio, setBio] = useState(authUser.bio);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -83,8 +83,10 @@ const ProfilePage = () => {
           </form>
 
           <img
-            className="max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10"
-            src={assets.logo_icon}
+            className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${
+              selectedImg && "rounded-full"
+            }`}
+            src={authUser?.profilePic ||assets.logo_icon}
             alt="logo"
           />
         </div>
