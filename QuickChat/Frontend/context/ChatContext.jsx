@@ -84,6 +84,16 @@ export const ChatProvider = ({ children }) => {
     return () => unsubsribeFromMessages();
   }, [socket, selectedUser]);
 
-  const value = {};
+  const value = {
+    messages,
+    users,
+    selectedUser,
+    getUsers,
+    setMessages,
+    sendMessage,
+    setSelectedUser,
+    unseenMessages,
+    setUnseenMessages,
+  };
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };
