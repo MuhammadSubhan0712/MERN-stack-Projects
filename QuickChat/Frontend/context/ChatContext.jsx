@@ -37,23 +37,42 @@ export const ChatProvider = ({ children }) => {
     }
   };
 
-//   function to send message to selected user:
-      const sendMessage = async (messageData) => {
-        try {
-            const { data } = await axios.post(`/api/messages/send/${selectedUser._id}`, messageData);
-            if (data.success) {
-                setMessages((prevMessages) => [...prevMessages, data.newMessage])
-            }
-            else {
-                toast.error(data.message);
-            }
-
-        } catch (error) {
-            toast.error(error.message);
-        }
+  //   function to send message to selected user:
+  const sendMessage = async (messageData) => {
+    try {
+      const { data } = await axios.post(
+        `/api/messages/send/${selectedUser._id}`,
+        messageData
+      );
+      if (data.success) {
+        setMessages((prevMessages) => [...prevMessages, data.newMessage]);
+      } else {
+        toast.error(data.message);
       }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
-    //   function to subscribe
+  //   function to subscribe to message for selected user:
+  const subscribeToMessages = async () => {
+    if (!socket) return;
+
+    socket.on("newMessage", (newMessage) => {
+      if (selectedUser && newMessage.senderId === selectedUser._id) {
+        newMessage.seen = true;
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        axios.put(`/api/messages/mark/${newMessage._id}`);
+      } else {
+        setUnseenMessages((prevUnseenMessages) => ({
+          ...prevUnseenMessages,
+          [newMessage.senderId]: prevUnseenMessages[newMessage.senderId]
+            ? prevUnseenMessages[newMessage.senderId] + 1
+            : 1
+        }));
+      }
+    });
+  };
 
   const value = {};
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
