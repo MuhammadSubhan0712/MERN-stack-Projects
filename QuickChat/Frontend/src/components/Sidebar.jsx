@@ -2,11 +2,21 @@ import React, { useContext } from "react";
 import assets, { userDummyData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/ChatContext";
 
-const Sidebar = ({ selectedUser, setSelectedUser }) => {
+const Sidebar = () => {
+  const {
+    getUsers,
+    users,
+    selectedUser,
+    setSelectedUser,
+    unseenMessages,
+    setUnseenMessages,
+  } = useContext(ChatContext);
+
+  const { logout, onlineUsers } = useContext(AuthContext);
 
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
 
   return (
     <>
@@ -28,7 +38,9 @@ const Sidebar = ({ selectedUser, setSelectedUser }) => {
               bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block">
                 <p onClick={() => navigate("/profile")}>Edit Profile</p>
                 <hr className="my-2 border-t border-gray-500" />
-                <p onClick={() => logout()} className="cursor-pointer text-sm">Logout</p>
+                <p onClick={() => logout()} className="cursor-pointer text-sm">
+                  Logout
+                </p>
               </div>
             </div>
           </div>
