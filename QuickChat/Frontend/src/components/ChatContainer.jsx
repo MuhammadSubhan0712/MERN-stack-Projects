@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import assets, { messagesDummyData } from "../assets/assets";
+import assets from "../assets/assets";
 import { formateMessageTime } from "../lib/utils";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
-import { send } from "vite";
+
 
 const ChatContainer = () => {
   const { messages, selectedUser, setSelectedUser, sendMessage, getMessages } =
@@ -21,7 +21,7 @@ const ChatContainer = () => {
     event.preventDefault();
     if (input.trim() === "") return null;
     await sendMessage({ text: input.trim() });
-    setInput("");
+    setInput('');
   };
 
   // Handle sending a image:
