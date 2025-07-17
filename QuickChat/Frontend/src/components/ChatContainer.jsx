@@ -3,6 +3,8 @@ import assets, { messagesDummyData } from "../assets/assets";
 import { formateMessageTime } from "../lib/utils";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+import { send } from "vite";
 
 const ChatContainer = () => {
 
@@ -15,7 +17,7 @@ const ChatContainer = () => {
 
   const [input, setInput] = useState("");
 
-  // Handle sending a message
+  // Handle sending a message:
   const handleSendMessage = async (event) => {
     event.preventDefault();
     if(input.trim() === "") return null;
@@ -23,7 +25,23 @@ const ChatContainer = () => {
     setInput("");
   }
 
-  
+  // Handle sending a image:
+   const handleSendImage = async (event) => {
+          const file = event.target.files[0];
+          if(!file || !file.type.startsWith("image/")) {
+             toast.error("Select an image file");
+             return;
+          }
+          const reader = new FileReader();
+          reader.onloadend = async () => {
+            await sendMessage({image: reader.result})
+            event.target.value = ""
+          }
+          reader.readAsDataURL(file);
+
+   }
+
+
 
   useEffect(() => {
     if (scrollEnd.current) {
@@ -112,7 +130,7 @@ const ChatContainer = () => {
             placeholder="Send a message"
             className="flex-1 text-sm p-3 border-none rounded-lg outline-none text-white placeholder-gray-400"
           />
-          <input type="file" id="image" accept="iiage/png, image/jpg" hidden />
+          <input onChange={handleSendImage} type="file" id="image" accept="image/png, image/jpg" hidden />
           <label htmlFor="image">
             <img
               src={assets.gallery_icon}
