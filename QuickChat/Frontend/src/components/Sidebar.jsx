@@ -19,11 +19,15 @@ const Sidebar = () => {
 
   const navigate = useNavigate();
 
-  const filteredUsers = input ? users.filter((user) => user.fullName.toLowerCase().includes(input.toLowerCase())) : users;
+  const filteredUsers = input
+    ? users.filter((user) =>
+        user.fullName.toLowerCase().includes(input.toLowerCase())
+      )
+    : users;
 
   useEffect(() => {
-        getUsers();
-  },[onlineUsers])
+    getUsers();
+  }, [onlineUsers]);
 
   return (
     <>
@@ -69,6 +73,7 @@ const Sidebar = () => {
             <div
               onClick={() => {
                 selectedUser(user);
+                setUnseenMessages((prev) => ({ ...prev, [user._id]: 0 }));
               }}
               key={index}
               className={`relative flex items-center gap-2 p-2 pl-4 rounded cursor-pointer max-sm:text-sm ${
