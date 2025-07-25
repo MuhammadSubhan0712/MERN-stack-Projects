@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { io } from "socket.io-client";
 
@@ -12,8 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [authUser, setAuthUser] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const [socket, setSocket] = useState([]);
+  const [socket, setSocket] = useState(null);
 
+  
   // Check if user is authenticated and if so, set the user data and connect the socket:
   const checkAuth = async () => {
     try {
@@ -46,6 +47,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+ 
   //   Logout function to handle user logout and socket disconnection:
   const logout = async () => {
     localStorage.removeItem("token");
@@ -74,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   const connectSocket = (userData) => {
     if (!userData || socket?.connected) return;
-    const newSocket = io(backendURL, {
+    const newSocket = io(backendURL , {
       query: {
         userId: userData._id,
       },
@@ -86,6 +88,28 @@ export const AuthProvider = ({ children }) => {
       setOnlineUsers(userIds);
     });
   };
+//  const connectSocket = useCallback(
+//     (userData) => {
+//       if (!userData) return;
+
+//       if (socket) {
+//         socket.disconnect();
+//         socket.off();
+//       }
+
+//       const newSocket = io("http://localhost:3000/", {
+//         query: { userId: userData._id },
+//         withCredentials: true,
+//         autoConnect: true,
+//       });
+
+//       newSocket.on("connect", () => console.log("Socket connected"));
+//       newSocket.on("disconnect", () => console.log("Socket disconnected"));
+//       newSocket.on("getOnlineUsers", setOnlineUsers);
+//       setSocket(newSocket);
+//     },
+//     [socket]
+//   );
 
   useEffect(() => {
     if (token) {
