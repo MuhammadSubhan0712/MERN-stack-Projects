@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import assets from "../assets/assets";
-import { FiUser, FiMail, FiLock, FiEdit2 } from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiEdit2, FiArrowLeft } from "react-icons/fi";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
@@ -60,7 +60,7 @@ const LoginPage = () => {
                       <FiUser className="text-gray-400 mr-3" />
                       <input
                         type="text"
-                        name="name"
+                        name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder="Full Name"
@@ -170,7 +170,7 @@ const LoginPage = () => {
               <div className="mt-6 text-center text-sm text-gray-400">
                 {currentState === "Sign up" ? (
                   <p>
-                    Already have an account?
+                    Already have an account? {" "}
                     <button
                       onClick={() => {
                         setCurrentState("Login");

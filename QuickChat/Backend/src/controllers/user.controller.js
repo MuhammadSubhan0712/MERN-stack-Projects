@@ -4,7 +4,7 @@ import generateToken from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
 
 // Signup new user:
-export const signup = async () => {
+export const signup = async (req, res) => {
   const { fullName, email, password, bio } = req.body;
 
   try {
@@ -46,6 +46,7 @@ export const signup = async () => {
       message: "Error created account",
       error,
     });
+    console.log(error);
   }
 };
 
