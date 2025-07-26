@@ -41,6 +41,7 @@ const LoginPage = () => {
 
   return (
     <>
+    <div className="bg-[url('./src/assets/login_page.jpg')] bg-contain bg-center">
       <div className="min-h-screen flex items-center justify-center  p-4">
         <div className="w-full max-w-md">
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden border border-white/20">
@@ -194,6 +195,7 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

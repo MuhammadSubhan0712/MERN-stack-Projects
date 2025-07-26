@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <>
-      <div className="bg-[url('./src/assets/gettyimages-1990425689-640x640.jpg')] bg-contain bg-center">
+     
       <Toaster />
     
         <Routes>
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/profile" element={authUser ?  <ProfilePage /> : <Navigate to="/login"/>} />
            
         </Routes>
-      </div>
+     
     </>
   );
 };

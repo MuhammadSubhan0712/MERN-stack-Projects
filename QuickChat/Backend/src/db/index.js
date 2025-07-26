@@ -6,7 +6,7 @@ export const connectDB = async () => {
     mongoose.connection.on("connected", () =>
       console.log("🔗 💯 MONGODB connected sucessfully✅")
     );
-    await mongoose.connect(`${process.env.MONGO_URI}/chatapp`);
+    await mongoose.connect(`${process.env.MONGO_URI}chatapp`);
   } catch (error) {
     console.log("❌ MONGODB connection failed ❌", error);
   }

@@ -65,7 +65,6 @@ export const login = async (req, res) => {
         message: "Invalid Credentials",
       });
     }
-
     const token = generateToken(userData._id);
 
     res.json({
@@ -74,12 +73,14 @@ export const login = async (req, res) => {
       token,
       message: "Login successfully",
     });
-  } catch (error) {}
-  res.json({
-    success: false,
-    message: "Error login account",
-    error,
-  });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "Error login account",
+    });
+    console.log(error);
+    
+  }
 };
 
 // User's Authentication check:
@@ -96,20 +97,19 @@ export const updateProfile = async (req, res) => {
     const { profilePic, bio, fullName } = req.body;
 
     const userId = req.user._id;
-    let updateUser;
+    let updatedUser;
 
     if (!profilePic) {
       await User.findByIdAndUpdate(userId, { bio, fullName }, { new: true });
     } else {
       const upload = await cloudinary.uploader.upload(profilePic);
 
-      updateUser = await User.findByIdAndUpdate(
+      updatedUser = await User.findByIdAndUpdate(
         userId,
         { profilePic: upload.secure_url, bio, fullName },
         { new: true }
       );
     }
-
     res.json({
       success: true,
       user: updatedUser,
