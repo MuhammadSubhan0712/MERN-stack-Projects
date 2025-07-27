@@ -47,9 +47,9 @@ const Sidebar = () => {
               <div
                 className="absolute top-full right-0 z-20 w-32 p-5 rounded-md 
               bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block">
-                <p onClick={() => navigate("/profile")}>Edit Profile</p>
+                <p className="cursor-pointer hover:text-cyan-600" onClick={() => navigate("/profile")}>Edit Profile</p>
                 <hr className="my-2 border-t border-gray-500" />
-                <p onClick={() => logout()} className="cursor-pointer text-sm">
+                <p onClick={() => logout()} className="cursor-pointer hover:text-red-600">
                   Logout
                 </p>
               </div>

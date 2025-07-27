@@ -44,9 +44,8 @@ export const signup = async (req, res) => {
     res.json({
       success: false,
       message: "Error created account",
-      error,
     });
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -57,7 +56,7 @@ export const login = async (req, res) => {
 
     const userData = await User.findOne({ email });
 
-    const isPasswordCorrect = await bcrypt.compare(process, userData.password);
+    const isPasswordCorrect = await bcrypt.compare(password, userData.password);
 
     if (!isPasswordCorrect) {
       return res.json({
@@ -78,8 +77,7 @@ export const login = async (req, res) => {
       success: false,
       message: "Error login account",
     });
-    console.log(error);
-    
+    console.log(error.message);
   }
 };
 

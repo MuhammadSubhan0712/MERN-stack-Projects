@@ -9,7 +9,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="">
+      <div className="bg-[url('./src/assets/home_page2.jpg')] bg-contain bg-center">
         <div className="border w-full h-screen sm:px-[15%] sm:py-[5%]">
           <div
             className={`backdrop-blur-xl border-2 border-gray-600 rounded-2xl
