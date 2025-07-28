@@ -14,7 +14,7 @@ export const getUsersForSidebar = async (req, res) => {
 
     // Count no of messages not seen:
     const unseenMessages = {};
-    const promises = filteredUsers.map(async () => {
+    const promises = filteredUsers.map(async (user) => {
       const messages = await Message.find({
         senderId: user._id,
         receiverId: userId,
@@ -32,7 +32,7 @@ export const getUsersForSidebar = async (req, res) => {
       unseenMessages,
     });
   } catch (error) {
-    console.log("Erorr occured ==> ", error.message);
+    console.log("Error occured ==> ", error.message);
     res.json({
       success: false,
       message: "Error occured ==>" + error.message,
