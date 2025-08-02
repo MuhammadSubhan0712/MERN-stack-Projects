@@ -100,9 +100,11 @@ export const checkAuth = (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { profilePic, bio, fullName } = req.body;
-
     const userId = req.user._id;
+
     let updatedUser;
+
+    // const updateData = { bio, fullName }
 
     if (!profilePic) {
       await User.findByIdAndUpdate(userId, { bio, fullName }, { new: true });
@@ -120,7 +122,7 @@ export const updateProfile = async (req, res) => {
       user: updatedUser,
     });
   } catch (error) {
-    console.log("Error occured ==>" + error.message);
+    console.log("Error occured to update profile ==>" + error.message);
     res.json({
       success: false,
       message: "Error occured ==>" + error.message,
