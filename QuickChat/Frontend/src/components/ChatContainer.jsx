@@ -13,7 +13,7 @@ const ChatContainer = () => {
   const { authUser, onlineUsers } = useContext(AuthContext);
 
   const scrollEnd = useRef();
-  const chatContainerRef = useRef();
+  // const chatContainerRef = useRef();
 
   const [input, setInput] = useState("");
 
@@ -48,12 +48,13 @@ const ChatContainer = () => {
 
   useEffect(() => {
     if (scrollEnd.current && messages) {
-      scrollEnd.current.scrollIntoView({ behavior: "smooth" });
+      scrollEnd.current.scrollIntoView({ behavior: "smooth", block: "nearest" // to prevent unwanted jumps
+     });
     }
   }, [messages]);
 
  return selectedUser ? (
-  <div className="h-screen flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
+  <div className="chat-container h-screen flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
     {/* Header */}
     <div className="flex-shrink-0 p-4 border-b border-gray-700/50 bg-gray-900/50">
       <div className="flex items-center gap-3">

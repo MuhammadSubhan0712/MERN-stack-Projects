@@ -12,3 +12,10 @@
 ::-webkit-scrollbar{
   display: none;
 }
+
+@media (max-width: 768px) {
+  .chat-container {
+   height: 100vh;
+  padding-bottom: 80px; /* for mobile keyboards */
+  }
+}
