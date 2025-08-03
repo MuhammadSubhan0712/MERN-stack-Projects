@@ -53,10 +53,9 @@ const ChatContainer = () => {
   }, [messages]);
 
  return selectedUser ? (
-
-  <div className="h-full flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
+  <div className="h-screen flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
     {/* Header */}
-    <div className="flex items-center justify-between p-4 border-b border-gray-700/50 bg-gray-900/50">
+    <div className="flex-shrink-0 p-4 border-b border-gray-700/50 bg-gray-900/50">
       <div className="flex items-center gap-3">
         <div className="relative">
           <img
@@ -116,9 +115,11 @@ const ChatContainer = () => {
                   : "bg-indigo-600/80 rounded-tr-none"} shadow-lg`}
               >
                 <p className="text-white">{msg.text}</p>
+              
+              <div ref={scrollEnd}/>
               </div>
             )}
-            <div className={`absolute top-0 ${msg.senderId !== authUser._id ? "-left-2" : "-right-2"}`}>
+            <div  className={`absolute top-0 ${msg.senderId !== authUser._id ? "-left-2" : "-right-2"}`}>
               <img
                 src={msg.senderId === authUser._id 
                   ? authUser?.profilePic || assets.avatar_icon
