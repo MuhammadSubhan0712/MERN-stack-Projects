@@ -19,10 +19,7 @@ const HomePage = () => {
              : "md:grid-cols-2"
          }`}>
             <Sidebar />
-            <div
-              className={`ml-72 ${selectedUser ? "mr-80" : ""} transition-all`}>
-              <ChatContainer />
-            </div>
+            <ChatContainer />
             <RightSidebar />
           </div>
         </div>

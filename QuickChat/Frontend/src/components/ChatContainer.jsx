@@ -58,7 +58,7 @@ const ChatContainer = () => {
     {/* Header */}
     <div className="flex-shrink-0 p-4 border-b border-gray-700/50 bg-gray-900/50">
       <div className="flex items-center gap-3">
-        <div className="relative">
+        <div className="sticky">
           <img
             src={selectedUser.profilePic || assets.avatar_icon}
             alt="profile"

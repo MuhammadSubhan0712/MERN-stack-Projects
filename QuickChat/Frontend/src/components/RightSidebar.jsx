@@ -16,7 +16,7 @@ const RightSidebar = () => {
   return (
     selectedUser && (
       <>
-  <div className={`fixed right-0 top-0 h-screen w-80 z-10 bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md border-l border-gray-700/30 ${selectedUser ? "max-md:hidden" : ""}`}>
+  <div className={`h-full flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md border-l border-gray-700/30 ${selectedUser ? "max-md:hidden" : ""}`}>
   <div className="p-6 flex flex-col items-center">
     <div className="relative mb-4">
       <img
