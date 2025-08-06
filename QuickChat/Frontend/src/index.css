@@ -19,3 +19,12 @@
   padding-bottom: 80px; /* for mobile keyboards */
   }
 }
+
+@media (max-height: 700px) {
+  .chat-container {
+    height: 100vh;
+  }
+  .message-area {
+    padding-bottom: 20px;
+  }
+}
