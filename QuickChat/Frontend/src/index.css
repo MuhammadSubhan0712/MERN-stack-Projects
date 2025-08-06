@@ -9,6 +9,10 @@
 
 }
 
+body{ 
+  overscroll-behavior: none;
+}
+
 ::-webkit-scrollbar{
   display: none;
 }

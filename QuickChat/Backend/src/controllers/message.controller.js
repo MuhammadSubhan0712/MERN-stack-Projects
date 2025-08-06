@@ -35,7 +35,7 @@ export const getUsersForSidebar = async (req, res) => {
     console.log("Error occured to get sidebar user ==> ", error.message);
     res.json({
       success: false,
-      message: "Error occured ==>" + error.message,
+      message: "Error occured to get sidebar user  ==>" + error.message,
     });
   }
 };
@@ -65,7 +65,7 @@ export const getMessages = async (req, res) => {
     console.log("Erorr occured to get messages ==> ", error.message);
     res.json({
       success: false,
-      message: "Error occured ==>" + error.message,
+      message: "Error occured to get messages ==>" + error.message,
     });
   }
 };
@@ -79,10 +79,10 @@ export const markMessageAsSeen = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log("Erorr occured to mark message as seen ==> ", error.message);
+    console.log("Error occured to mark message as seen ==> ", error.message);
     res.json({
       success: false,
-      message: "Error occured ==>" + error.message,
+      message: "Error occured to mark message as seen  ==>" + error.message,
     });
   }
 };
@@ -120,7 +120,7 @@ export const sendMessage = async (req, res) => {
     console.log("Erorr occured to send message ==> ", error.message);
     res.json({
       success: false,
-      message: "Error occured ==>" + error.message,
+      message: "Error occured to send message ==>" + error.message,
     });
   }
 };

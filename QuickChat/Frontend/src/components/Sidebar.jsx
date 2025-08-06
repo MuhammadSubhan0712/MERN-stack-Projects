@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className={`flex flex-col justify-center bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md border-r border-gray-700/30 ${selectedUser ? "max-md:hidden" : ""}`}>
+      <div className={`flex flex-col justify-center h-full bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md border-r border-gray-700/30 ${selectedUser ? "max-md:hidden" : ""}`}>
   <div className="p-4 border-b border-gray-700/30">
     <div className="flex justify-between items-center mb-6">
       <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">

@@ -9,22 +9,29 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex h-screen bg-[url('./src/assets/home_page2.jpg')] bg-contain bg-center">
-        <div className="border w-full h-screen sm:px-[15%] sm:py-[5%]">
+      <div className="relative h-screen overflow-hidden">
+        <div
+          className="absolute inset-0 bg-[url('./src/assets/home_page2.jpg')] bg-contain bg-center"
+          style={{
+            transform: selectedUser ? "scale(1.1)" : "scale(1)",
+            transition: "transform 0.3s ease",
+          }}
+        />
+        <div className="relative flex h-full max-w-6xl mx-auto backdrop-blur-sm">
           <div
             className={`${
-              selectedUser ? "hidden md:block" : "block"
-            } w-full md:w-72 flex-shrink-0`}>
+              selectedUser ? "hidden" : "block"
+            } md:block w-full md:w-80 flex-shrink-0 border-r border-gray-700`}>
             <Sidebar />
           </div>
 
           <div
-            className={`flex-1 ${selectedUser ? "hidden md:block" : "block"}`}>
+            className={`${selectedUser ? "block" : "hidden"} md:block flex-1`}>
             <ChatContainer />
           </div>
 
           {selectedUser && (
-            <div className="hidden md:block w-80 flex-shrink-0">
+            <div className="hidden md:block w-80 flex-shrink-0 border-l border-gray-700">
               <RightSidebar />
             </div>
           )}
@@ -34,4 +41,5 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+// To memorize components:
+export default React.memo(HomePage);

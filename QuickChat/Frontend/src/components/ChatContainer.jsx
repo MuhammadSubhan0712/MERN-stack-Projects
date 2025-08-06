@@ -56,9 +56,9 @@ const ChatContainer = () => {
   const memorizedMessages = useMemo(() => messages, [messages.length]);
 
  return selectedUser ? (
-  <div className="h-screen flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
+  <div className="h-full flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
     {/* Header */}
-    <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-700/50 bg-gray-900/50">
+    <div className="flex-shrink-0 p-4 border-b border-gray-700/50 bg-gray-900/50">
       <div className="flex items-center gap-3">
         <div className="relative">
           <img
