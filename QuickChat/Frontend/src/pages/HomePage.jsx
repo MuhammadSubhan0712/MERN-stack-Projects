@@ -9,19 +9,25 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="bg-[url('./src/assets/home_page2.jpg')] bg-contain bg-center">
+      <div className="flex h-screen bg-[url('./src/assets/home_page2.jpg')] bg-contain bg-center">
         <div className="border w-full h-screen sm:px-[15%] sm:py-[5%]">
           <div
-            className={`backdrop-blur-xl border-2 border-gray-600 rounded-2xl
-         overflow-hidden h-[100%] grid grid-cols-1 relative ${
-           selectedUser
-             ? "md:grid-cols-[1fr_1.5fr_1fr] xl:grid-cols-[1fr_2fr_1fr]"
-             : "md:grid-cols-2"
-         }`}>
+            className={`${
+              selectedUser ? "hidden md:block" : "block"
+            } w-full md:w-72 flex-shrink-0`}>
             <Sidebar />
-            <ChatContainer />
-            <RightSidebar />
           </div>
+
+          <div
+            className={`flex-1 ${selectedUser ? "hidden md:block" : "block"}`}>
+            <ChatContainer />
+          </div>
+
+          {selectedUser && (
+            <div className="hidden md:block w-80 flex-shrink-0">
+              <RightSidebar />
+            </div>
+          )}
         </div>
       </div>
     </>
