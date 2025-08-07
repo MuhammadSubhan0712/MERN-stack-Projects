@@ -3,6 +3,9 @@ import Sidebar from "../components/Sidebar";
 import ChatContainer from "../components/ChatContainer";
 import RightSidebar from "../components/RightSidebar";
 import { ChatContext } from "../../context/ChatContext";
+import { IoMdContacts } from "react-icons/io";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { TiThMenu } from "react-icons/ti";
 
 const HomePage = () => {
   const { selectedUser, setSelectedUser } = useContext(ChatContext);
@@ -37,21 +40,24 @@ const HomePage = () => {
           )}
         </div>
 
-         {/* mobile navigation buttons */}
-  <div className="md:hidden fixed bottom-4 left-0 right-0 flex justify-center gap-4 z-30">
-    <button 
-      onClick={() => setSelectedUser(null)}
-      className="p-3 bg-gray-800 rounded-full shadow-lg"
-    >
-      {/* Contacts icon */}
-    </button>
-    <button 
-      onClick={() => setSelectedUser(prev => prev || users[0])}
-      className="p-3 bg-indigo-600 rounded-full shadow-lg"
-    >
-      {/* Chat icon */}
-    </button>
-  </div>
+        {/* mobile navigation buttons */}
+        <div className="md:hidden fixed bottom-4 left-0 right-0 flex justify-center gap-4 z-30">
+          <button
+            onClick={() => setSelectedUser(null)}
+            className="p-3 bg-purple-500 rounded-full shadow-lg">
+            <TiThMenu />
+          </button>
+          <button
+            onClick={() => setSelectedUser(null)}
+            className="p-3 bg-gray-800 rounded-full shadow-lg">
+            <IoMdContacts />
+          </button>
+          <button
+            onClick={() => setSelectedUser((prev) => prev || users[0])}
+            className="p-3 bg-indigo-600 rounded-full shadow-lg">
+            <IoChatboxEllipsesOutline />
+          </button>
+        </div>
       </div>
     </>
   );
