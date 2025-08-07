@@ -5,7 +5,7 @@ import RightSidebar from "../components/RightSidebar";
 import { ChatContext } from "../../context/ChatContext";
 
 const HomePage = () => {
-  const { selectedUser } = useContext(ChatContext);
+  const { selectedUser, setSelectedUser } = useContext(ChatContext);
 
   return (
     <>
@@ -36,6 +36,22 @@ const HomePage = () => {
             </div>
           )}
         </div>
+
+         {/* mobile navigation buttons */}
+  <div className="md:hidden fixed bottom-4 left-0 right-0 flex justify-center gap-4 z-30">
+    <button 
+      onClick={() => setSelectedUser(null)}
+      className="p-3 bg-gray-800 rounded-full shadow-lg"
+    >
+      {/* Contacts icon */}
+    </button>
+    <button 
+      onClick={() => setSelectedUser(prev => prev || users[0])}
+      className="p-3 bg-indigo-600 rounded-full shadow-lg"
+    >
+      {/* Chat icon */}
+    </button>
+  </div>
       </div>
     </>
   );

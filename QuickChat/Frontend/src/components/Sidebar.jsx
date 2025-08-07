@@ -43,11 +43,7 @@ const Sidebar = () => {
             <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
               QuickChat
             </h1>
-            <button
-              onClick={() => setSelectedUser(null)}
-              className="md:hidden p-1.5 rounded-full bg-gray-700/50 hover:bg-gray-700 transition-colors absolute right-4 top-4">
-              <FaWindowClose />
-            </button>
+           
             <div className="relative group">
               <button className="p-1.5 rounded-full bg-gray-700/50 hover:bg-gray-700 transition-colors">
                 <svg
