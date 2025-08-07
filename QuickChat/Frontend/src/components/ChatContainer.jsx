@@ -56,7 +56,7 @@ const ChatContainer = () => {
   const memorizedMessages = useMemo(() => messages, [messages.length]);
 
  return selectedUser ? (
-  <div className="h-full flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md">
+  <div className="h-full flex flex-col bg-gradient-to-b from-gray-900/80 to-purple-900/20 backdrop-blur-md md:static absolute inset-0 z-10">
     {/* Header */}
     <div className="flex-shrink-0 p-4 border-b border-gray-700/50 bg-gray-900/50">
       <div className="flex items-center gap-3">
@@ -95,14 +95,14 @@ const ChatContainer = () => {
     </div>
 
     {/* Chat Area */}
-    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-900/30 to-transparent
+    <div className="flex-1 overflow-y-auto p-2 md:p-4 space-y-3 bg-gradient-to-b from-gray-900/30 to-transparent
     scrollbar-thin scrollbar-thumb-gray-700">
       {messages.map((msg, index) => (
         <div
           key={index}
           className={`flex ${msg.senderId !== authUser._id ? "justify-start" : "justify-end"}`}
         >
-          <div className={`max-w-xs md:max-w-md relative group ${msg.senderId !== authUser._id ? "pl-10" : "pr-10"}`}>
+          <div className={`max-w-[75%] md:max-w-md relative group ${msg.senderId !== authUser._id ? "pl-10" : "pr-10"}`}>
             {msg.image ? (
               <div className="rounded-xl overflow-hidden border border-gray-700/50 hover:border-indigo-500/50 transition-colors">
                 <img
@@ -140,7 +140,7 @@ const ChatContainer = () => {
     </div>
 
     {/* Input Area */}
-    <div className="flex-shrink-0 p-4 border-t border-gray-700/50 bg-gray-900/20">
+    <div className="flex-shrink-0 p-2 md:p-4 border-t border-gray-700/50 bg-gray-900/20">
       <div className="flex items-center gap-2">
         <button className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-gray-700/50 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
