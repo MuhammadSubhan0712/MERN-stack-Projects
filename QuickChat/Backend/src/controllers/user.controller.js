@@ -2,6 +2,9 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Signup new user:
 export const signup = async (req, res) => {
@@ -107,9 +110,9 @@ export const updateProfile = async (req, res) => {
     if (profilePic) {
       const uploadResult = await cloudinary.uploader.upload(profilePic, {
         folder: "chat_app_profile_pics",
-        // resource_type: "auto",
       });
       profilePicUrl = uploadResult.secure_url;
+      
     }
 
     const updateUser = await User.findByIdAndUpdate(
@@ -121,7 +124,6 @@ export const updateProfile = async (req, res) => {
       },
       { new: true }
     );
-
     res.json({
       success: true,
       user: updateUser,

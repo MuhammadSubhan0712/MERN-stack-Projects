@@ -2,6 +2,9 @@ import cloudinary from "../lib/cloudinary.js";
 import Message from "../models/message.model.js";
 import User from "../models/user.model.js";
 import { io, userSocketMap } from "../../index.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Get all user except the logged in user:
 export const getUsersForSidebar = async (req, res) => {
