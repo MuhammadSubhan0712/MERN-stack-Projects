@@ -102,9 +102,6 @@ export const updateProfile = async (req, res) => {
     const { profilePic, bio, fullName } = req.body;
     const userId = req.user._id;
 
-    // let updatedUser ;
-
-    const updateData = { bio, fullName };
     let profilePicUrl;
 
     if (profilePic) {
