@@ -33,9 +33,10 @@ export const getUsersForSidebar = async (req, res) => {
     });
   } catch (error) {
     console.log("Error occured to get sidebar user ==> ", error.message);
-    res.json({
+    res.status(500).json({
       success: false,
-      message: "Error occured to get sidebar user  ==>" + error.message,
+      message: "Failed to get sidebar user",
+      error: error.message,
     });
   }
 };
@@ -62,10 +63,11 @@ export const getMessages = async (req, res) => {
       messages,
     });
   } catch (error) {
-    console.log("Erorr occured to get messages ==> ", error.message);
-    res.json({
+    console.log("Error occured to get messages ==> ", error.message);
+    res.status(500).json({
       success: false,
-      message: "Error occured to get messages ==>" + error.message,
+      message: "Failed to get messages",
+      error: error.message,
     });
   }
 };
@@ -80,9 +82,10 @@ export const markMessageAsSeen = async (req, res) => {
     });
   } catch (error) {
     console.log("Error occured to mark message as seen ==> ", error.message);
-    res.json({
+    res.status(500).json({
       success: false,
-      message: "Error occured to mark message as seen  ==>" + error.message,
+      message: "Failed to mark message as seen ",
+      error: error.message,
     });
   }
 };
@@ -96,10 +99,13 @@ export const sendMessage = async (req, res) => {
 
     let imageUrl;
     if (image) {
-      const uploadResponse = await cloudinary.uploader.upload(image);
+      if (!cloudinary.config().cloud_name) {
+        throw new Error("Cloudinary not configured");
+      }
+      const uploadResponse = await cloudinary.v2.uploader.upload(image);
       imageUrl = uploadResponse.secure_url;
     }
-    const newMessage = Message.create({
+    const newMessage = await Message.create({
       senderId,
       receiverId,
       text,
@@ -118,9 +124,10 @@ export const sendMessage = async (req, res) => {
     });
   } catch (error) {
     console.log("Erorr occured to send message ==> ", error.message);
-    res.json({
+    res.status(500).json({
       success: false,
-      message: "Error occured to send message ==>" + error.message,
+      message: "Failed to send message",
+      error: error.message,
     });
   }
 };
