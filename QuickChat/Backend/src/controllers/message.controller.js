@@ -99,10 +99,13 @@ export const sendMessage = async (req, res) => {
 
     let imageUrl;
     if (image) {
-      if (!cloudinary.config().cloud_name) {
-        throw new Error("Cloudinary not configured");
+      if (!cloudinary.config().api_key) {
+        throw new Error("Cloudinary API key missing");
       }
-      const uploadResponse = await cloudinary.v2.uploader.upload(image);
+      const uploadResponse = await cloudinary.uploader
+        .upload(image, {
+          folder: "chat_app_uploads",
+        });
       imageUrl = uploadResponse.secure_url;
     }
     const newMessage = await Message.create({
@@ -111,6 +114,10 @@ export const sendMessage = async (req, res) => {
       text,
       image: imageUrl,
     });
+    console.log("Cloudinary Config:", {
+  cloud: cloudinary.config().cloud_name,
+  apiKey: !!cloudinary.config().api_key, // Should log `true`
+});
 
     // Emit the new message to the receiver's socket:
     const receiverSocketId = userSocketMap[receiverId];
@@ -123,11 +130,11 @@ export const sendMessage = async (req, res) => {
       newMessage,
     });
   } catch (error) {
-    console.log("Erorr occured to send message ==> ", error.message);
+    console.log("Error occured to send message ==> ", error.message);
     res.status(500).json({
       success: false,
       message: "Failed to send message",
-      error: error.message,
+      error: process.env.NODE_ENV === "development" ? error.message : "Internal server error",
     });
   }
 };

@@ -136,6 +136,7 @@ const Sidebar = () => {
                   : "hover:bg-gray-700/50"
               }`}>
               <div className="relative">
+                {/* Here is user image : */}
                 <img
                   src={user?.profilePic || assets.avatar_icon}
                   alt={user.fullName}

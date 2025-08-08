@@ -105,29 +105,26 @@ export const updateProfile = async (req, res) => {
     // let updatedUser ;
 
     const updateData = { bio, fullName };
+    let profilePicUrl;
 
-    if (!profilePic) {
-      const upload = await cloudinary.v2.uploader.upload(profilePic, {
-        folder: "user_profiles",
-        resource_type: "auto",
+    if (profilePic) {
+      const uploadResult = await cloudinary.uploader.upload(profilePic, {
+        folder: "chat_app_profile_pics",
+        // resource_type: "auto",
       });
-      updateData.profilePic = upload.secure_url;
-
-      // await User.findByIdAndUpdate(userId, { bio, fullName }, { new: true });
+      profilePicUrl = uploadResult.secure_url;
     }
 
-    const updateUser = await User.findByIdAndUpdate(userId, updateData, {
-      new: true,
-    });
-    // else {
-    //   const upload = await cloudinary.uploader.upload(profilePic);
+    const updateUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        fullName,
+        bio,
+        ...(profilePicUrl && { profilePic: profilePicUrl }),
+      },
+      { new: true }
+    );
 
-    //   updatedUser = await User.findByIdAndUpdate(
-    //     userId,
-    //     { profilePic: upload.secure_url, bio, fullName },
-    //     { new: true }
-    //   );
-    // }
     res.json({
       success: true,
       user: updateUser,
@@ -136,10 +133,7 @@ export const updateProfile = async (req, res) => {
     console.log("Error occured to update profile ==>", error.message);
     res.status(500).json({
       success: false,
-      message:
-        "Error occured ==>" + error.message.includes("api key")
-          ? "Server configuration error"
-          : error.message,
+      message: "Failed to update profile",
     });
   }
 };
