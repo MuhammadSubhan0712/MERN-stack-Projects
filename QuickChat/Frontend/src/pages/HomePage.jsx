@@ -4,14 +4,12 @@ import ChatContainer from "../components/ChatContainer";
 import { AuthContext } from "../../context/AuthContext";
 import RightSidebar from "../components/RightSidebar";
 import { ChatContext } from "../../context/ChatContext";
-import { IoMdContacts } from "react-icons/io";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const { selectedUser, setSelectedUser } = useContext(ChatContext);
   const { logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+
   return (
     <>
       <div className="relative h-screen overflow-hidden">
