@@ -21,7 +21,7 @@ export const protectedRoute = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    console.log(error.message);
+    console.log("Error is here",error.message);
 
     res.json({
       success: false,
