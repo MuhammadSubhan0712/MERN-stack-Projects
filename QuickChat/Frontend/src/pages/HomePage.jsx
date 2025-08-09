@@ -16,7 +16,7 @@ const HomePage = () => {
     <>
       <div className="relative h-screen overflow-hidden">
         <div
-          className="absolute inset-0 bg-[url('./src/assets/home_page2.jpg')] bg-contain bg-center"
+          className="absolute inset-0 bg-[url('/home_page2.jpg')] bg-contain bg-center"
           style={{
             transform: selectedUser ? "scale(1.1)" : "scale(1)",
             transition: "transform 0.3s ease",
