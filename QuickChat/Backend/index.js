@@ -28,6 +28,8 @@ const vercelHandler = async (req, res) => {
   app(req, res);
 };
 
+
+
 // Store online users:
 export const userSocketMap = {}; // { userId: socketId }
 
@@ -71,3 +73,5 @@ if (process.env.NODE_ENV !== "production") {
 }
 // Export server for Vercel:
 export default server;
+
+export {vercelHandler};
