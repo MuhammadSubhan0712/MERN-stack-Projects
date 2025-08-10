@@ -2,9 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { io } from "socket.io-client";
-import dotenv from "dotenv";
 
-dotenv.config();
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.baseURL = backendURL;
