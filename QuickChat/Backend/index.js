@@ -6,6 +6,7 @@ import { connectDB } from "./src/db/index.js";
 import userRouter from "./src/routes/user.route.js";
 import messageRouter from "./src/routes/message.route.js";
 import { Server } from "socket.io";
+import { log } from "console";
 
 dotenv.config();
 // Create express app and http server:
@@ -18,6 +19,10 @@ export const io = new Server(server, {
   method: ["GET", "POST", "PUT"],
   credentials: true,
 });
+
+const vercelHandler = async (req, res) => {
+  app(req, res);
+};
 
 // Store online users:
 export const userSocketMap = {}; // { userId: socketId }
@@ -49,7 +54,10 @@ app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
 // Connect to MONGODB:
-await connectDB();
+await connectDB().catch(error => {
+  console.log("❌ MONGODB connection error", error, "❌");
+  process.exit(1);
+});
 
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 3000;
