@@ -14,7 +14,9 @@ const server = http.createServer(app);
 
 // Initialize socket.io server:
 export const io = new Server(server, {
-  cors: { origin: "*" },
+  cors: { origin: "https://chat-app-frontend-one-jet.vercel.app" },
+  method: ["GET", "POST", "PUT"],
+  credentials: true,
 });
 
 // Store online users:
