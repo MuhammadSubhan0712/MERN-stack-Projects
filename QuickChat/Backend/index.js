@@ -15,12 +15,12 @@ const server = http.createServer(app);
 
 // Initialize socket.io server:
 export const io = new Server(server, {
-  cors: { 
-  origin: [
-    "http://localhost:5000",
-    "https://chat-app-frontend-one-jet.vercel.app"
-  ]
- },
+  cors: {
+    origin: [
+      "http://localhost:5000",
+      "https://chat-app-frontend-one-jet.vercel.app",
+    ],
+  },
   method: ["GET", "POST", "PUT"],
   credentials: true,
 });
@@ -59,7 +59,7 @@ app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
 // Connect to MONGODB:
-await connectDB().catch(error => {
+await connectDB().catch((error) => {
   console.log("❌ MONGODB connection error", error, "❌");
   process.exit(1);
 });
